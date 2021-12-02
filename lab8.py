@@ -1,6 +1,3 @@
-import copy
-
-
 def num_different_permutations(word):
     dic = {}
     for letter in word:
@@ -17,16 +14,14 @@ def update(dic, letter):
 
 
 def num_different_permutations_helper(dic):
-    origen_dic = copy.deepcopy(dic)
+    origen_dic = {key: value for key, value in dic.items()}
     if sum(dic.values()) == 0:
         return 1
     count = 0
     for key in dic:
         if dic[key] >= 1:
-            print(dic)
             count += num_different_permutations_helper(update(dic, key))
         dic = origen_dic
     return count
 
 
-print(num_different_permutations("abc"))
